@@ -13,7 +13,7 @@ export type ResumenPanel = {
   unidadesActivas: number;
   requierenCorreccion: number;
   noAptas: number;
-  unidadesBloqueadas: { id: string; numeroUnidad: string; placa: string; estado: EstadoUnidad }[];
+  unidadesBloqueadas: { id: string; numeroUnidad: string; placa: string; estado: EstadoUnidad; viajeId: string | null }[];
   recientes: FilaReporte[];
 };
 
@@ -45,7 +45,18 @@ export async function resumenPanel(): Promise<ResumenPanel> {
   const bloqueadas = camiones.data
     .filter((c) => c.estado_actual !== "apto")
     .sort((a, b) => (a.estado_actual === "no_apto" ? -1 : 1) - (b.estado_actual === "no_apto" ? -1 : 1))
-    .map((c) => ({ id: c.id, numeroUnidad: c.numero_unidad, placa: c.placa, estado: c.estado_actual }));
+    .map((c) => ({ id: c.id, numeroUnidad: c.numero_unidad, placa: c.placa, estado: c.estado_actual, viajeId: null as string | null }));
+
+  // Último viaje de cada unidad bloqueada, para ir directo a gestionar su liberación
+  if (bloqueadas.length > 0) {
+    const { data: ult } = await cliente
+      .from("inspecciones")
+      .select("camion_id, viaje_id, iniciada_at")
+      .in("camion_id", bloqueadas.map((b) => b.id))
+      .not("finalizada_at", "is", null)
+      .order("iniciada_at", { ascending: false });
+    for (const b of bloqueadas) b.viajeId = ult?.find((u) => u.camion_id === b.id)?.viaje_id ?? null;
+  }
 
   return {
     inspeccionesHoy: inspHoy.data.length,

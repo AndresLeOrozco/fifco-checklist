@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { EstadoBadge } from "@/components/estado-badge";
 import { resumenPanel } from "@/lib/data/panel";
 import { exigirSesionReportes } from "@/lib/reportes/guardia";
@@ -20,9 +21,14 @@ export default async function PanelPage() {
 
   return (
     <>
-      <div>
-        <p className="text-[13px] text-tinta-suave">{formatoFechaLarga()}</p>
-        <h1 className="mt-1 text-[26px] font-semibold">Panel de flota</h1>
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p className="text-[13px] text-tinta-suave">{formatoFechaLarga()}</p>
+          <h1 className="mt-1 text-[26px] font-semibold">Panel de flota</h1>
+        </div>
+        <Link href="/reportes/listado" className="flex h-11 items-center rounded-[10px] bg-marca px-4 text-sm font-semibold text-white hover:bg-marca-oscuro">
+          Ver todos los reportes
+        </Link>
       </div>
 
       <div className="grid grid-cols-[repeat(auto-fit,minmax(210px,1fr))] gap-4">
@@ -47,6 +53,11 @@ export default async function PanelPage() {
                   Unidad {u.numeroUnidad} <span className="font-mono font-medium text-tinta-suave">{u.placa}</span>
                 </span>
                 <EstadoBadge estado={u.estado} />
+                {u.viajeId && (
+                  <Link href={`/reportes/viajes/${u.viajeId}`} className="flex h-10 items-center whitespace-nowrap rounded-[10px] border border-linea-fuerte px-3.5 text-[13px] font-semibold text-marca">
+                    Gestionar liberación
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -54,8 +65,9 @@ export default async function PanelPage() {
       </section>
 
       <section className="overflow-hidden rounded-2xl border border-linea">
-        <div className="border-b border-linea px-5 py-4">
+        <div className="flex items-center justify-between border-b border-linea px-5 py-4">
           <h2 className="text-base font-semibold">Inspecciones recientes</h2>
+          <Link href="/reportes/listado" className="text-[13px] font-semibold text-marca">Ver todas</Link>
         </div>
         {r.recientes.length === 0 ? (
           <p className="px-5 py-6 text-sm text-tinta-suave">Aún no hay inspecciones registradas.</p>
@@ -64,8 +76,8 @@ export default async function PanelPage() {
             <table className="w-full min-w-[760px] text-left text-[13px]">
               <thead className="bg-fondo-suave text-xs text-tinta-suave">
                 <tr>
-                  {["Fecha", "Tipo", "Unidad", "Conductor", "Ruta", "Estado"].map((h) => (
-                    <th key={h} scope="col" className="px-5 py-2.5 font-semibold">{h}</th>
+                  {["Fecha", "Tipo", "Unidad", "Conductor", "Ruta", "Estado", ""].map((h, i) => (
+                    <th key={i} scope="col" className="px-5 py-2.5 font-semibold">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -80,6 +92,7 @@ export default async function PanelPage() {
                     <td className="px-5 py-3">{f.conductor}</td>
                     <td className="px-5 py-3">{f.ruta_codigo} · {f.ruta}</td>
                     <td className="px-5 py-3"><EstadoBadge estado={f.resultado} /></td>
+                    <td className="px-5 py-3"><Link href={`/reportes/viajes/${f.viaje_id}`} className="font-semibold text-marca">Ver</Link></td>
                   </tr>
                 ))}
               </tbody>

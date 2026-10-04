@@ -1,0 +1,29 @@
+# Mantiene activo el proyecto gratuito de Supabase.
+# Supabase pausa los proyectos del plan Free tras 7 días sin actividad.
+# Este workflow llama una vez al día a /api/salud, que hace una consulta mínima.
+#
+# Configuración (una sola vez):
+#   GitHub > repositorio > Settings > Secrets and variables > Actions > Variables
+#   Crear la variable APP_URL con la URL de la app, por ejemplo https://fifco-checklist.netlify.app
+
+name: Mantener activo Supabase
+
+on:
+  schedule:
+    - cron: "17 11 * * *" # todos los días a las 05:17 hora de Costa Rica (11:17 UTC)
+  workflow_dispatch: # permite ejecutarlo a mano desde la pestaña Actions
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Llamar al chequeo de salud
+        env:
+          APP_URL: ${{ vars.APP_URL }}
+        run: |
+          if [ -z "$APP_URL" ]; then
+            echo "Falta la variable APP_URL en Settings > Secrets and variables > Actions > Variables"
+            exit 1
+          fi
+          curl --fail --silent --show-error --retry 3 --retry-delay 20 --max-time 60 "$APP_URL/api/salud"
