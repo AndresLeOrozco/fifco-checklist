@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+/*
+  Paleta FIFCO checklist
+  - marca      #026DB5  color principal (botones, enlaces, encabezados)
+  - celeste    #16A7E3  acentos y barras de progreso
+  - acero      #7291BE  bordes destacados y detalles
+  - Los estados (apto / corrección / no apto) usan verde, ámbar y rojo
+    apagados para que se distingan sin depender solo del azul.
+*/
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-marca: #026db5;
+  --color-marca-oscuro: #014f84;
+  --color-marca-suave: #eaf3fa;
+  --color-celeste: #16a7e3;
+  --color-acero: #7291be;
+  --color-acero-oscuro: #2f4f7f;
+
+  --color-tinta: #0f2a44;
+  --color-tinta-suave: #4b5d73;
+  --color-linea: #dce5ef;
+  --color-linea-fuerte: #c9d6e4;
+  --color-fondo-suave: #f4f8fc;
+
+  --color-apto: #17643a;
+  --color-apto-fondo: #e7f4ec;
+  --color-correccion: #7a4d00;
+  --color-correccion-fondo: #fdf1d8;
+  --color-noapto: #a11d12;
+  --color-noapto-fondo: #fce8e6;
+  --color-falla: #b42318;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-tinta);
+  font-family: var(--font-sans);
+}
