@@ -1,5 +1,5 @@
 -- =====================================================================
--- Checklist de camiones FIFCO · Fase 1
+-- Checklist de flota · Heineken · Distribución Retail · Fase 1
 -- 04 · Storage: bucket privado para fotografías de hallazgos y firmas
 --
 -- Privado y sin políticas: solo el servidor (secret key) sube archivos y

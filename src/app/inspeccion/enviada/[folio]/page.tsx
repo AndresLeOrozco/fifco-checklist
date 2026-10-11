@@ -12,12 +12,12 @@ export const metadata: Metadata = { title: "Inspección enviada" };
 const MENSAJES: Record<"salida" | "retorno", Record<EstadoUnidad, string>> = {
   salida: {
     apto: "La unidad puede salir a ruta. La inspección quedó registrada.",
-    requiere_correccion: "Se registró un hallazgo menor. La unidad sale solo con la autorización del supervisor.",
-    no_apto: "La unidad NO sale a ruta: queda inmovilizada y el viaje se canceló. Se notifica por correo al supervisor.",
+    requiere_correccion: "Se registró un hallazgo menor. La unidad sale solo con la autorización del encargado de flota.",
+    no_apto: "La unidad NO sale a ruta: queda inmovilizada y el viaje se canceló. Se notifica por correo al encargado de flota.",
   },
   retorno: {
     apto: "Viaje cerrado. El reporte del viaje se envía por correo.",
-    requiere_correccion: "Viaje cerrado con hallazgos pendientes. El reporte se envía por correo al supervisor.",
+    requiere_correccion: "Viaje cerrado con hallazgos pendientes. El reporte se envía por correo al encargado de flota.",
     no_apto: "Viaje cerrado. La unidad queda inmovilizada hasta su liberación. El reporte y una alerta se envían por correo.",
   },
 };

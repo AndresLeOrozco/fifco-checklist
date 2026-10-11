@@ -1,5 +1,5 @@
 -- =====================================================================
--- Checklist de camiones FIFCO · Fase 1
+-- Checklist de flota · Heineken · Distribución Retail · Fase 1
 -- 05 · Ajuste: una salida "No apto" cancela el viaje
 --
 -- Antes, una inspección de salida con falla crítica dejaba el viaje abierto

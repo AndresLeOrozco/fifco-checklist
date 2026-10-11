@@ -33,7 +33,7 @@ function TablaInspeccion({ titulo, i, vacio }: { titulo: string; i: InspeccionDe
       {i ? (
         <ul>
           {i.respuestas.map((r) => (
-            <li key={r.id} className="flex items-center gap-3 border-t border-[#EEF2F7] px-4 py-2.5 text-[13px] first:border-t-0">
+            <li key={r.id} className="flex items-center gap-3 border-t border-[#EDF3F1] px-4 py-2.5 text-[13px] first:border-t-0">
               <span className="w-5 text-tinta-suave">{r.orden}</span>
               <span className="flex-1">{r.titulo}{r.critico && <span className="ml-1.5 text-[11px] text-acero-oscuro">crítico</span>}</span>
               <span className={`min-w-11 rounded-full px-2.5 py-0.5 text-center text-xs font-semibold ${ESTILO_RES[r.resultado]}`}>{TEXTO_RES[r.resultado]}</span>
@@ -124,7 +124,7 @@ export default async function DetalleViajePage({ params }: PageProps<"/reportes/
         <h2 className="text-[15px] font-semibold">Hallazgos</h2>
         {hallazgos.length === 0 && <p className="text-[13px] text-tinta-suave">Sin hallazgos en este viaje.</p>}
         {hallazgos.map(({ i, r }) => (
-          <div key={r.id} className="flex flex-wrap gap-5 border-t border-[#EEF2F7] pt-4 first:border-t-0 first:pt-0">
+          <div key={r.id} className="flex flex-wrap gap-5 border-t border-[#EDF3F1] pt-4 first:border-t-0 first:pt-0">
             <div className="flex flex-wrap gap-2.5">
               {r.fotos.map((ruta, n) =>
                 urls[ruta] ? (
@@ -150,7 +150,7 @@ export default async function DetalleViajePage({ params }: PageProps<"/reportes/
           </div>
         ))}
         {inspecciones.some((i) => i.observaciones) && (
-          <div className="flex flex-col gap-1 border-t border-[#EEF2F7] pt-4">
+          <div className="flex flex-col gap-1 border-t border-[#EDF3F1] pt-4">
             <span className="text-xs font-medium text-tinta-suave">Observaciones</span>
             {inspecciones.filter((i) => i.observaciones).map((i) => (
               <p key={i.id} className="text-sm"><strong className="font-semibold">{i.tipo === "salida" ? "Salida" : "Retorno"}:</strong> {i.observaciones}</p>
@@ -174,7 +174,7 @@ export default async function DetalleViajePage({ params }: PageProps<"/reportes/
                   )}
                 </div>
                 <span className="text-xs font-semibold">{f.nombre}</span>
-                <span className="text-xs text-tinta-suave">{f.tipo === "conductor" ? "Conductor" : "Supervisor"} · {f.inspeccion}</span>
+                <span className="text-xs text-tinta-suave">{f.tipo === "conductor" ? "Conductor" : "Encargado de flota"} · {f.inspeccion}</span>
               </div>
             ))}
           </div>
@@ -197,7 +197,7 @@ export default async function DetalleViajePage({ params }: PageProps<"/reportes/
             <p className="text-[13px] text-tinta-suave">La unidad está apta. No hay hallazgos pendientes de liberar.</p>
           )}
           {liberaciones && liberaciones.length > 0 && (
-            <div className="flex flex-col gap-2 border-t border-[#EEF2F7] pt-3.5">
+            <div className="flex flex-col gap-2 border-t border-[#EDF3F1] pt-3.5">
               <span className="text-xs font-medium text-tinta-suave">Historial</span>
               {liberaciones.map((l) => (
                 <div key={l.id} className="text-[13px] leading-relaxed">
@@ -214,7 +214,7 @@ export default async function DetalleViajePage({ params }: PageProps<"/reportes/
         <section className="flex flex-col gap-2 rounded-2xl border border-linea p-5">
           <h2 className="text-[15px] font-semibold">Correos enviados</h2>
           {notificaciones.map((n) => (
-            <div key={n.id} className="flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-[#EEF2F7] pt-2 text-[13px] first:border-t-0 first:pt-0">
+            <div key={n.id} className="flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-[#EDF3F1] pt-2 text-[13px] first:border-t-0 first:pt-0">
               <span className="font-medium">{n.tipo === "reporte_viaje" ? "Reporte de viaje" : n.tipo === "alerta_no_apto" ? "Alerta No apto" : "Resumen"}</span>
               <span className="text-tinta-suave">{formatoFechaHora(n.created_at)}</span>
               <span className={n.estado === "enviado" ? "text-apto" : n.estado === "error" ? "text-noapto" : "text-tinta-suave"}>

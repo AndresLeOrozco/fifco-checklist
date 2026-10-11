@@ -101,7 +101,7 @@ export async function enviarInspeccion(formData: FormData): Promise<ResultadoEnv
   const firmaConductor = await firmaDesde(formData, "firmaConductor");
   if (!firmaConductor) return { ok: false, error: "Falta la firma del conductor." };
   const firmaSupervisor = datos.tipo === "retorno" ? await firmaDesde(formData, "firmaSupervisor") : null;
-  if (datos.tipo === "retorno" && !firmaSupervisor) return { ok: false, error: "Falta la firma del supervisor." };
+  if (datos.tipo === "retorno" && !firmaSupervisor) return { ok: false, error: "Falta la firma del encargado de flota." };
 
   const cliente = db();
   let viajeCreadoId: string | null = null;

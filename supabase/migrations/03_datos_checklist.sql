@@ -1,5 +1,5 @@
 -- =====================================================================
--- Checklist de camiones FIFCO · Fase 1
+-- Checklist de flota · Heineken · Distribución Retail · Fase 1
 -- 03 · Datos iniciales: los 24 puntos del checklist
 -- Criticidad según la regla TPM: frenos, dirección, neumáticos,
 -- seguridad y refrigeración (esta última solo en unidades refrigeradas).

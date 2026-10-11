@@ -1,5 +1,5 @@
 -- =====================================================================
--- Checklist de camiones FIFCO · Fase 1
+-- Checklist de flota · Heineken · Distribución Retail · Fase 1
 -- 01 · Esquema: tipos, tablas, índices y seguridad (RLS)
 --
 -- Ejecutar en Supabase > SQL Editor, en orden: 01 → 02 → 03 → 04.

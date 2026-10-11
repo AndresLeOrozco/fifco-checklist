@@ -8,15 +8,15 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Checklist de flota · FIFCO",
+    default: "Checklist de flota · Heineken",
     template: "%s · Checklist de flota",
   },
-  description: "Inspección de salida y retorno de camiones de reparto.",
+  description: "Heineken · Distribución Retail · Inspección de salida y retorno de camiones de reparto.",
   applicationName: "Checklist de flota",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#026DB5",
+  themeColor: "#028132",
   width: "device-width",
   initialScale: 1,
 };

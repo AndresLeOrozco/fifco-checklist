@@ -19,14 +19,16 @@ Todas tienen plan gratuito. Sigue el orden: cada paso usa datos del anterior.
 
 ## 1. Supabase: aplicar la migración nueva
 
-Ya creaste el proyecto y ejecutaste los scripts 01 a 04. Esta versión agrega uno más:
+Ya creaste el proyecto y ejecutaste los scripts 01 a 04. Las versiones nuevas agregan dos más (ejecútalos en orden):
 
 1. Entra a [supabase.com/dashboard](https://supabase.com/dashboard) y abre el proyecto.
 2. Menú lateral → **SQL Editor** → **New query**.
 3. Pega el contenido de `supabase/migrations/05_salida_no_apta_cancela_viaje.sql` y presiona **Run**.
    - Qué hace: cuando una inspección de salida resulta **No apto**, el viaje se cancela (el camión no sale).
+   - Luego pega `supabase/migrations/06_heineken_checklist.sql` y presiona **Run**.
+   - Qué hace: renombra "Sistema de refrigeración" → "Equipo frío" y "Caja de carga" → "Cajón de camión", quita "Monitoreo" (salida) y "Devoluciones" (retorno), y cambia el mensaje de firma a "encargado de flota".
 4. Carga los datos iniciales (desde la app es más fácil, ver el paso 6):
-   camiones, conductores y supervisores, rutas y destinatarios de correo.
+   camiones, conductores y encargados de flota, rutas y destinatarios de correo.
 
 **Comprobar:** `Table Editor` → tabla `viajes`: no debe haber viajes `en_ruta` cuya salida fue No apto.
 
@@ -109,7 +111,7 @@ Si se agotan, el sitio se pausa hasta el mes siguiente. Para no gastarlos:
 
 ### 4.2 Verificar un dominio (indispensable para enviar a otros)
 Sin dominio verificado, Resend solo deja enviar desde su remitente de prueba y **únicamente a tu propio correo**.
-Para enviar a los supervisores necesitas un dominio propio:
+Para enviar a los encargados de flota necesitas un dominio propio:
 
 1. En Resend: **Domains** → **Add Domain**.
 2. Escribe un **subdominio** para envíos, p. ej. `send.tudominio.com` (Resend recomienda subdominios para
@@ -117,7 +119,7 @@ Para enviar a los supervisores necesitas un dominio propio:
 3. Resend te muestra unos registros DNS (normalmente un **MX** y un **TXT** de SPF, y un **TXT** de DKIM
    con nombre `resend._domainkey`). Cópialos tal cual.
 4. Agrégalos donde se administra el DNS del dominio:
-   - Si es un dominio de FIFCO: envíale los registros al equipo de TI y pídeles que los creen.
+   - Si es un dominio de Heineken: envíale los registros al equipo de TI y pídeles que los creen.
    - Si es un dominio tuyo (Cloudflare, Namecheap, GoDaddy…): crea cada registro en su panel de DNS.
 5. Vuelve a Resend y presiona **Verify DNS Records**. Puede tardar de minutos a unas horas.
    El dominio debe quedar en estado **Verified**.
@@ -166,7 +168,7 @@ A partir de ahí corre solo todos los días a las 5:17 a. m. (hora de Costa Rica
 1. Abre `https://<tu-sitio>/reportes` e ingresa la contraseña de reportes.
 2. **Catálogos**:
    - **Camiones:** número de unidad, placa, tipo (seco o refrigerado) y kilometraje actual.
-   - **Conductores y supervisores:** código de empleado, nombre y rol.
+   - **Conductores y encargados de flota:** código de empleado, nombre y rol.
    - **Rutas:** código y descripción.
    - **Destinatarios de correo:** quién recibe reportes y alertas.
 3. Para muchos registros a la vez: en Supabase → **Table Editor** → tabla → **Insert** → **Import data from CSV**.

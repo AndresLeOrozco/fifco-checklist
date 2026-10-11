@@ -1,5 +1,5 @@
 -- =====================================================================
--- Checklist de camiones FIFCO · Fase 1
+-- Checklist de flota · Heineken · Distribución Retail · Fase 1
 -- 02 · Reglas de negocio: triggers, funciones y vista de reportes
 -- =====================================================================
 

@@ -1,4 +1,4 @@
-import { FranjaMarca, Logo } from "@/components/marca";
+import { FranjaMarca, Logo, NOMBRE_OPERACION } from "@/components/marca";
 import { NavReportes } from "@/components/nav-reportes";
 import { exigirSesionReportes } from "@/lib/reportes/guardia";
 import { salirReportes } from "../acciones";
@@ -17,7 +17,7 @@ export default async function ReportesLayout({ children }: LayoutProps<"/reporte
             <Logo />
             <div className="flex flex-col gap-0.5">
               <span className="text-[15px] font-semibold">Checklist de flota</span>
-              <span className="text-xs text-tinta-suave">FIFCO · CEDI</span>
+              <span className="text-xs text-tinta-suave">{NOMBRE_OPERACION}</span>
             </div>
           </div>
           <NavReportes />

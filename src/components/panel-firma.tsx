@@ -33,7 +33,7 @@ export function PanelFirma({
     ctx.lineWidth = 2.4;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
-    ctx.strokeStyle = "#0F2A44";
+    ctx.strokeStyle = "#0B2A33";
     if (valor) {
       const img = new Image();
       img.onload = () => ctx.drawImage(img, 0, 0, width, height);
@@ -97,7 +97,7 @@ export function PanelFirma({
           ref={canvasRef}
           role="img"
           aria-labelledby={`${id}-label`}
-          className={`h-36 w-full touch-none rounded-xl border border-dashed bg-[#FBFDFF] ${error ? "border-falla" : "border-acero"}`}
+          className={`h-36 w-full touch-none rounded-xl border border-dashed bg-[#FBFDFC] ${error ? "border-falla" : "border-acero"}`}
           onPointerDown={inicio}
           onPointerMove={mover}
           onPointerUp={fin}

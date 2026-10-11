@@ -1,14 +1,19 @@
 import Link from "next/link";
 import { connection } from "next/server";
-import { FranjaMarca, Logo } from "@/components/marca";
+import { FranjaMarca, Logo, NOMBRE_OPERACION } from "@/components/marca";
 import { IconoCamion, IconoFlecha, IconoRetorno } from "@/components/iconos";
+import { puntosChecklist } from "@/lib/data/catalogos";
 import { unidadesEnRuta } from "@/lib/data/viajes";
 import { formatoFechaCorta, formatoHora, saludo } from "@/lib/formato";
 
 // Pantalla 1 · Inicio del conductor
 export default async function InicioPage() {
   await connection(); // datos en vivo: se renderiza en cada visita
-  const enRuta = await unidadesEnRuta();
+  const [enRuta, puntosSalida, puntosRetorno] = await Promise.all([
+    unidadesEnRuta(),
+    puntosChecklist("salida"),
+    puntosChecklist("retorno"),
+  ]);
 
   return (
     <main className="mx-auto flex w-full max-w-md flex-1 flex-col">
@@ -17,7 +22,7 @@ export default async function InicioPage() {
         <Logo />
         <div className="flex flex-1 flex-col">
           <span className="text-base font-semibold">Checklist de flota</span>
-          <span className="text-xs text-tinta-suave">FIFCO · CEDI</span>
+          <span className="text-xs text-tinta-suave">{NOMBRE_OPERACION}</span>
         </div>
         <span className="text-xs text-tinta-suave">{formatoFechaCorta()}</span>
       </header>
@@ -37,7 +42,7 @@ export default async function InicioPage() {
           </span>
           <span className="flex flex-1 flex-col gap-1">
             <span className="text-[17px] font-semibold">Inspección de salida</span>
-            <span className="text-sm">Antes de cargar o despachar · 12 puntos</span>
+            <span className="text-sm">Antes de cargar o despachar · {puntosSalida.length} puntos</span>
           </span>
           <IconoFlecha className="size-5" />
         </Link>
@@ -51,7 +56,7 @@ export default async function InicioPage() {
           </span>
           <span className="flex flex-1 flex-col gap-1">
             <span className="text-[17px] font-semibold">Inspección de retorno</span>
-            <span className="text-sm text-tinta-suave">Al regresar al CEDI · 12 puntos</span>
+            <span className="text-sm text-tinta-suave">Al regresar al CEDI · {puntosRetorno.length} puntos</span>
           </span>
           <IconoFlecha className="size-5 text-marca" />
         </Link>
@@ -89,7 +94,7 @@ export default async function InicioPage() {
       <div className="flex-1" />
       <footer className="flex justify-center border-t border-linea px-5 pb-6 pt-4">
         <Link href="/reportes" className="flex min-h-11 items-center text-sm font-medium text-marca hover:text-marca-oscuro">
-          Acceso a reportes (supervisores)
+          Acceso a reportes (encargados de flota)
         </Link>
       </footer>
     </main>

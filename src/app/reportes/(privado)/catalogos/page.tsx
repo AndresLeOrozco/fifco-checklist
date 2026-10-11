@@ -11,7 +11,7 @@ export const metadata: Metadata = { title: "Catálogos" };
 
 const PESTANAS = [
   { id: "camiones", texto: "Camiones" },
-  { id: "personal", texto: "Conductores y supervisores" },
+  { id: "personal", texto: "Conductores y encargados de flota" },
   { id: "rutas", texto: "Rutas" },
   { id: "destinatarios", texto: "Destinatarios de correo" },
 ] as const;
@@ -94,7 +94,7 @@ export default async function CatalogosPage({ searchParams }: PageProps<"/report
 }
 
 const TIPOS_UNIDAD = [{ valor: "seco", texto: "Seco" }, { valor: "refrigerado", texto: "Refrigerado" }];
-const ROLES = [{ valor: "conductor", texto: "Conductor" }, { valor: "supervisor", texto: "Supervisor" }];
+const ROLES = [{ valor: "conductor", texto: "Conductor" }, { valor: "supervisor", texto: "Encargado de flota" }];
 
 async function Camiones() {
   const { data } = await db().from("camiones").select("*").order("activo", { ascending: false }).order("numero_unidad");
@@ -151,7 +151,7 @@ async function Personal() {
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px]">
               <span className="w-20 font-mono text-xs">{p.codigo_empleado}</span>
               <span className="min-w-48 font-semibold">{p.nombre}</span>
-              <span className="w-24">{p.rol === "conductor" ? "Conductor" : "Supervisor"}</span>
+              <span className="w-24">{p.rol === "conductor" ? "Conductor" : "Encargado de flota"}</span>
               <span className="text-tinta-suave">{p.email}</span>
               <span className="flex-1" />
               <BotonActivo tabla="personal" id={p.id} activo={p.activo} />

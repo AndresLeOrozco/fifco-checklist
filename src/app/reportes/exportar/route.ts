@@ -22,7 +22,7 @@ export async function GET(request: Request) {
     return /[;"\n\r]/.test(seguro) ? `"${seguro.replace(/"/g, '""')}"` : seguro;
   };
 
-  const encabezado = ["Folio", "Viaje", "Fecha", "Tipo", "Unidad", "Placa", "Tipo de unidad", "Conductor", "Ruta", "Supervisor", "Kilometraje", "Km recorridos", "Estado", "Hallazgos"];
+  const encabezado = ["Folio", "Viaje", "Fecha", "Tipo", "Unidad", "Placa", "Tipo de unidad", "Conductor", "Ruta", "Encargado de flota", "Kilometraje", "Km recorridos", "Estado", "Hallazgos"];
   const lineas = filas.map((r) =>
     [
       r.folio,

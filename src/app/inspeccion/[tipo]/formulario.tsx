@@ -245,8 +245,8 @@ export function FormularioInspeccion(props: Props) {
   function validarFirmas(e: Record<string, string>) {
     if (!f.firmaConductor) e.firmaConductor = "Falta la firma del conductor.";
     if (!esSalida) {
-      if (!f.supervisorId) e.supervisorId = "Seleccione el supervisor.";
-      if (!f.firmaSupervisor) e.firmaSupervisor = "Falta la firma del supervisor.";
+      if (!f.supervisorId) e.supervisorId = "Seleccione el encargado de flota.";
+      if (!f.firmaSupervisor) e.firmaSupervisor = "Falta la firma del encargado de flota.";
     }
     if (esSalida && !f.confirmado) e.confirmado = "Debe confirmar la inspección.";
   }
@@ -687,14 +687,14 @@ export function FormularioInspeccion(props: Props) {
 
           {!esSalida && (
             <>
-              <Campo id="supervisorId" etiqueta="Supervisor que recibe la unidad" error={errores.supervisorId}>
+              <Campo id="supervisorId" etiqueta="Encargado de flota que recibe la unidad" error={errores.supervisorId}>
                 <select id="supervisorId" value={f.supervisorId} onChange={(e) => set("supervisorId", e.target.value)} className={claseSelect(errores.supervisorId)}>
-                  <option value="">Seleccione el supervisor</option>
+                  <option value="">Seleccione el encargado de flota</option>
                   {props.supervisores.map((s) => <option key={s.id} value={s.id}>{s.nombre}</option>)}
                 </select>
               </Campo>
               <div id="campo-firmaSupervisor">
-                <PanelFirma etiqueta="Firma del supervisor" valor={f.firmaSupervisor} onCambio={(v) => set("firmaSupervisor", v)} error={errores.firmaSupervisor} />
+                <PanelFirma etiqueta="Firma del encargado de flota" valor={f.firmaSupervisor} onCambio={(v) => set("firmaSupervisor", v)} error={errores.firmaSupervisor} />
               </div>
               <p className="text-[13px] leading-relaxed text-tinta-suave">
                 Al cerrar, se envía por correo el reporte del viaje completo (salida y retorno).
@@ -811,7 +811,7 @@ function Contador({ n, etiqueta, color }: { n: number; etiqueta: string; color: 
 function TarjetaResultado({ estado, tipo }: { estado: EstadoUnidad | null; tipo: TipoInspeccion }) {
   const textos: Record<EstadoUnidad, string> = {
     apto: tipo === "salida" ? "Inspección completa y sin fallas. La unidad puede salir a ruta." : "Sin hallazgos nuevos en el retorno.",
-    requiere_correccion: "Hay un hallazgo menor. El supervisor debe evaluarlo, corregirlo o autorizarlo según el procedimiento de mantenimiento.",
+    requiere_correccion: "Hay un hallazgo menor. El encargado de flota debe evaluarlo, corregirlo o autorizarlo según el procedimiento de mantenimiento.",
     no_apto: "Falla crítica: la unidad quedará inmovilizada hasta que se registre su liberación. Se enviará una alerta por correo.",
   };
   const borde = estado === "no_apto" ? "border-[#F1C9C4] bg-[#FFF7F6]" : estado === "requiere_correccion" ? "border-[#F0D49A] bg-[#FFFBF2]" : "border-[#B9DDC7] bg-[#F6FBF8]";

@@ -1,29 +1,29 @@
 @import "tailwindcss";
 
 /*
-  Paleta FIFCO checklist
-  - marca      #026DB5  color principal (botones, enlaces, encabezados)
-  - celeste    #16A7E3  acentos y barras de progreso
-  - acero      #7291BE  bordes destacados y detalles
+  Paleta Heineken · Distribución Retail (tomada de la imagen de marca)
+  - marca      #028132  verde principal (botones, enlaces, encabezados)
+  - celeste    #0E8CBC  azul de acento (franja y barras de progreso)
+  - acero      #5E8E9C  teal para bordes destacados y detalles
   - Los estados (apto / corrección / no apto) usan verde, ámbar y rojo
-    apagados para que se distingan sin depender solo del azul.
+    apagados; el verde de "apto" es más oscuro que el de marca.
 */
 @theme {
   --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  --color-marca: #026db5;
-  --color-marca-oscuro: #014f84;
-  --color-marca-suave: #eaf3fa;
-  --color-celeste: #16a7e3;
-  --color-acero: #7291be;
-  --color-acero-oscuro: #2f4f7f;
+  --color-marca: #028132;
+  --color-marca-oscuro: #006625;
+  --color-marca-suave: #e8f4ec;
+  --color-celeste: #0e8cbc;
+  --color-acero: #5e8e9c;
+  --color-acero-oscuro: #005d7c;
 
-  --color-tinta: #0f2a44;
-  --color-tinta-suave: #4b5d73;
-  --color-linea: #dce5ef;
-  --color-linea-fuerte: #c9d6e4;
-  --color-fondo-suave: #f4f8fc;
+  --color-tinta: #0b2a33;
+  --color-tinta-suave: #4a5e63;
+  --color-linea: #dde7e4;
+  --color-linea-fuerte: #c8d7d3;
+  --color-fondo-suave: #f3f8f5;
 
   --color-apto: #17643a;
   --color-apto-fondo: #e7f4ec;

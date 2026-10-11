@@ -1,7 +1,7 @@
 # fifco-checklist
 
-Aplicación web para la inspección de salida y retorno de los camiones de reparto de FIFCO.
-Los conductores llenan el checklist desde el celular, y los supervisores consultan los reportes.
+Aplicación web de **Heineken · Distribución Retail** para la inspección de salida y retorno de los camiones de reparto.
+Los conductores llenan el checklist desde el celular, y los encargados de flota consultan los reportes.
 
 **Stack:** Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · Supabase (Postgres + Storage) · Resend (correo) · Netlify (hosting)
 
@@ -10,7 +10,7 @@ Los conductores llenan el checklist desde el celular, y los supervisores consult
 ## Requisitos
 
 - Node.js 20.9 o superior (recomendado: 22 LTS)
-- Proyecto de Supabase con las migraciones de `supabase/migrations/` ejecutadas en orden (01 → 05)
+- Proyecto de Supabase con las migraciones de `supabase/migrations/` ejecutadas en orden (01 → 06)
 
 ## Puesta en marcha
 
